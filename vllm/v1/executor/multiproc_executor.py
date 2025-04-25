@@ -65,7 +65,7 @@ class MultiprocExecutor(Executor):
         # Since it only works for single node, we can use the loopback address
         # 127.0.0.1 for communication.
         distributed_init_method = get_distributed_init_method(
-            "127.0.0.1", get_open_port())
+            os.environ.get("MASTER_ADDR", "127.0.0.1"), get_open_port())
 
         # Initialize worker and set up message queues for SchedulerOutputs
         # and ModelRunnerOutputs
